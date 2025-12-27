@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Bank Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #eef3f9;
+    min-height: 100vh;
+}
+
+/* MAIN CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    background: #fff;
+    animation: fadeIn 0.8s ease;
+}
+
+/* SLIDER */
+.image-side {
+    width: 100%;
+    background: #000;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #000;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slider::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+.slide { z-index: 0; }
+
+/* LOGIN SECTION */
+.login-side {
+    padding: 70px 20px 60px;
+    display: flex;
+    justify-content: center;
+}
+
+/* LOGIN CARD */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 35px 30px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* HEADINGS */
+.login-card h2 {
+    text-align: center;
+    color: #007bff;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* FORM */
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 14px 45px 14px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+.input-container input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0,123,255,0.25);
+    outline: none;
+}
+
+.input-container i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #0096d6);
+}
+
+/* LINKS */
+.login-card a {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-card a:hover {
+    color: #0056b3;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .login-side {
+        padding: 40px 15px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="image-side">
+    <div class="slider">
+        <img src="{{ url_for('static', filename='images/posters/istockphoto-546200366-612x612.jpg') }}" class="slide active">
+        <img src="{{ url_for('static', filename='images/posters/3d-online-banking.jpg') }}" class="slide">
+        <img src="{{ url_for('static', filename='images/posters/wooden-house.jpg') }}" class="slide">
+        <img src="{{ url_for('static', filename='images/posters/mortgage.jpg') }}" class="slide">
+        <img src="{{ url_for('static', filename='images/posters/calculator.jpg') }}" class="slide">
+    </div>
+</div>
+
+    <div class="login-side">
+    <div class="login-card">
+        <h2>Welcome to Mini Bank</h2>
+
+        <form method="POST" autocomplete="off">
+            <div class="form-fields">
+
+                <div class="input-container">
+                    <input type="email" name="email" placeholder="Email" required autocomplete="off">
+                    <i class="fa fa-envelope"></i>
+                </div>
+
+                <div class="input-container">
+                    <input type="password" name="password" placeholder="Password" required autocomplete="new-password">
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                <button type="submit">Login</button>
+            </div>
+
+            <hr class="my-4">
+
+            <a href="/register">First time user? Create Account</a>
+        </form>
+    </div>
+</div>
+<script>
+    let slides = document.querySelectorAll(".slide");
+    let index = 0;
+
+    setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+    }, 3500); // change every 3.5 seconds
+</script>
+
+</body>
+</html>

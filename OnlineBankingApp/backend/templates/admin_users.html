@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Users</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #eef5ff, #f8fbff);
+            padding: 40px 15px;
+        }
+
+        .page-container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #007bff;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .badge-admin {
+            background-color: #dc3545;
+        }
+
+        .badge-user {
+            background-color: #198754;
+        }
+
+        .back-btn {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .back-btn a {
+            font-weight: 600;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-btn a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <h2 class="page-title">
+        <i class="fa-solid fa-users"></i> All Users
+    </h2>
+
+    <div class="card p-4">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for u in users %}
+                    <tr>
+                        <td>{{ u.user_id }}</td>
+                        <td>{{ u.full_name }}</td>
+                        <td>{{ u.email }}</td>
+                        <td>
+                            {% if u.role == 'ADMIN' %}
+                                <span class="badge badge-admin">ADMIN</span>
+                            {% else %}
+                                <span class="badge badge-user">USER</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="back-btn">
+        <a href="/admin/dashboard">
+            <i class="fa-solid fa-arrow-left"></i> Back to Admin Dashboard
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
