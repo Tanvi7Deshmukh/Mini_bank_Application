@@ -133,17 +133,6 @@ Open browser:
 http://127.0.0.1:5000/
 
 
-# Sample Credentials
-
-* Role: Admin
-* Email: amitsharmaadmin@gmail.com
-* Password: as@123
-
-* Role: User
-* Email: test@gmail.com
-* Password: hashed_password
-
-
 # Author
 
   Tanvi Deshmukh
